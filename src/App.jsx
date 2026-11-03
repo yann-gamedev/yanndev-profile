@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Asset, Boot, Clock, ScrambleLink, Skill, Viewer } from './components';
 import useAnimations from './useAnimations';
+import { ArticlesPreview } from './Articles';
 
 export default function App() {
   const [filter, setFilter] = useState('all');
@@ -75,6 +76,7 @@ export default function App() {
       <ScrambleLink href="#work">WORK</ScrambleLink>
       <ScrambleLink href="#journey">JOURNEY</ScrambleLink>
       <ScrambleLink href="#achievements">CERTS</ScrambleLink>
+      <ScrambleLink href="#articles">ARTICLES</ScrambleLink>
       <ScrambleLink href="#contact">CONTACT</ScrambleLink>
     </nav>
     <div className="nav__right">
@@ -92,6 +94,7 @@ export default function App() {
     <li data-target="work" role="link" tabIndex={0}>WORK</li>
     <li data-target="journey" role="link" tabIndex={0}>JOURNEY</li>
     <li data-target="achievements" role="link" tabIndex={0}>CERTS</li>
+    <li data-target="articles" role="link" tabIndex={0}>ARTICLES</li>
     <li data-target="contact" role="link" tabIndex={0}>CONTACT</li>
   </ol>
 
@@ -618,10 +621,12 @@ export default function App() {
       </div>
     </section>
 
-    {/* 06 CONTACT */}
+    <ArticlesPreview />
+
+    {/* 07 CONTACT */}
     <section className="sec contact" id="contact" data-section>
       <div className="sec__head">
-        <span>06 / CONTACT</span><span>SAY_HELLO.SH</span>
+        <span>07 / CONTACT</span><span>SAY_HELLO.SH</span>
       </div>
       <div className="contact__inner">
         <p className="label reveal">OPEN TO WORK · ANY IT PROJECT · FAST RESPONSE</p>
