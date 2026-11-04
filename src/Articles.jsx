@@ -14,9 +14,9 @@ function ArticleMeta({ article }) {
   </div>;
 }
 
-function ArticleCover({ article, preview = false }) {
+function ArticleCover({ article, image, preview = false }) {
   const [failed, setFailed] = useState(false);
-  const cover = article.cover;
+  const cover = image ?? article.cover;
   return <figure className={preview ? 'article-cover article-cover--preview' : 'article-cover'}>
     {cover?.src && !failed ? <img src={cover.src} alt={cover.alt} loading={preview ? 'lazy' : 'eager'} onError={() => setFailed(true)} /> :
       <div className="article-cover__placeholder" aria-label="Foto artikel belum tersedia"><span aria-hidden="true">IMG</span><span>NO IMAGE YET</span></div>}
@@ -99,6 +99,7 @@ export function ArticleReader({ article }) {
       <div className="reading-body">{article.sections.map(section =>
         <section id={section.id} key={section.id}>
           <h2>{section.title}</h2>
+          {section.image && <ArticleCover key={section.image.src} image={section.image} />}
           {section.paragraphs?.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
           {section.list?.length > 0 && <ul>{section.list.map((point, index) => <li key={index}>{point}</li>)}</ul>}
           {section.quote && <blockquote>{section.quote}</blockquote>}

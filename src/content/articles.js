@@ -1,8 +1,11 @@
+import borneo from './borneo.js';
+
 // Duplicate this draft to add an article. Only published: true appears publicly.
 export const articles = [
+  borneo,
   {
     slug: 'contoh-artikel',
-    published: true,
+    published: false,
     title: 'Dari ide menjadi tulisan',
     description: 'DEMO — contoh tampilan artikel. Tekan VIEW untuk melihat halaman baca dengan judul, foto, dan isi lengkap. Bukan artikel tugas kuliah.',
     date: '2026-11-03',
@@ -88,11 +91,11 @@ export function getPublishedArticles(entries = articles) {
         !Array.isArray(article.sections) || !article.sections.length) {
       throw new Error(`Incomplete article: ${article.slug}`);
     }
-    if (article.cover?.src) {
-      const source = article.cover.src;
+    for (const image of [article.cover, ...article.sections.map(section => section.image)].filter(image => image?.src)) {
+      const source = image.src;
       const isLocal = source.startsWith('/assets/') && !/[?#\\]/.test(source) &&
         !source.split('/').some(part => part === '.' || part === '..');
-      if ((!isLocal && !/^https:\/\//.test(source)) || !article.cover.alt?.trim()) {
+      if ((!isLocal && !/^https:\/\//.test(source)) || !image.alt?.trim()) {
         throw new Error(`Invalid cover in article: ${article.slug}`);
       }
     }

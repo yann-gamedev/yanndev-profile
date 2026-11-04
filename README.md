@@ -53,6 +53,6 @@ Jangan simpan secret di variabel `VITE_*`: nilainya masuk ke bundle browser dan 
 5. Ubah `published: false` menjadi `published: true` jika tulisan siap. Jalankan `npm test` dan `npm run build`.
 6. Deploy perubahan. Artikel muncul di beranda, `/articles/`, dan `/articles/slug-artikel/`. Bagikan URL halaman artikel atau gunakan tombol **BAGIKAN ARTIKEL**; browser tanpa menu berbagi memakai salin tautan.
 
-Draft tidak tampil dan tidak memiliki halaman publik. Jangan menyimpan informasi rahasia pada draft: repository ini publik. Artikel `/articles/contoh-artikel/` diterbitkan sebagai **DEMO**, bukan tugas kuliah. Contoh ini membuat tombol VIEW dan halaman baca bisa langsung dicoba. Hapus objek `contoh-artikel` atau ubah `published: false` saat artikel asli sudah siap.
+Draft tidak tampil dan tidak memiliki halaman publik. Jangan menyimpan informasi rahasia pada draft: repository ini publik. Artikel pertama, **Paru-Paru Borneo Terbakar, Istana Pura-Pura Buta**, ada di `src/content/borneo.js` dan diimpor melalui `src/content/articles.js`. Teks dan dua gambar diambil dari PDF artikel; tanggal publikasi situs diatur ke 4 November 2026. Demo `contoh-artikel` kini berstatus draft. Gambar per bagian bisa ditambahkan melalui `section.image` dengan properti `src`, `alt`, dan `caption`, sama seperti `cover`.
 
 `src/Articles.jsx` berisi daftar, halaman baca, daftar isi, estimasi waktu baca, referensi, dan tombol berbagi. Gaya tambahan ada di `src/articles.css`; CSS lama tetap terpisah. Halaman artikel memakai navigasi link biasa tanpa dependency router tambahan.

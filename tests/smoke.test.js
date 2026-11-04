@@ -26,15 +26,25 @@ test('portfolio keeps all sections, skills, previews and deployment settings', a
     const { default: ArticlesPage, ArticleReader, ArticleList } = await server.ssrLoadModule('/src/Articles.jsx');
     const { articles, getPublishedArticles, readingMinutes } = await server.ssrLoadModule('/src/content/articles.js');
     const listing = renderToStaticMarkup(createElement(ArticlesPage));
-    const draft = articles.find(article => !article.published);
+    const draft = articles.find(article => article.slug === 'judul-artikel-pertama');
     assert.ok(listing.includes('▸ VIEW'), 'Article listing must show VIEW');
-    assert.ok(listing.includes('href="/articles/contoh-artikel/"'));
+    const firstArticle = articles.find(article => article.published);
+    assert.equal(firstArticle.title, 'Paru-Paru Borneo Terbakar, Istana Pura-Pura Buta');
+    assert.ok(listing.includes(`href="/articles/${firstArticle.slug}/"`));
     assert.ok(!listing.includes(draft.title), 'Draft must not be listed');
-    const demo = renderToStaticMarkup(createElement(ArticlesPage, { pathname: '/articles/contoh-artikel/' }));
-    assert.ok(demo.includes('Dari ide menjadi tulisan'));
-    assert.ok(demo.includes('src="/assets/articles/contoh-artikel.svg"'));
-    assert.ok(demo.includes('Tentang halaman ini'));
-    assert.ok(existsSync('public/assets/articles/contoh-artikel.svg'));
+    assert.ok(!listing.includes('Dari ide menjadi tulisan'), 'Demo must not be listed');
+    const articlePage = renderToStaticMarkup(createElement(ArticlesPage, { pathname: `/articles/${firstArticle.slug}/` }));
+    assert.ok(articlePage.includes(firstArticle.title));
+    assert.ok(articlePage.includes('src="/assets/articles/borneo-karhutla.jpeg"'));
+    assert.ok(articlePage.includes('src="/assets/articles/relawan-karhutla.jpeg"'));
+    assert.ok(articlePage.includes('kebusukan ini ke permukaan'));
+    assert.ok(articlePage.includes('PM2.5)'));
+    assert.ok(articlePage.includes('tindakan bela negara yang paling terhormat.'));
+    assert.equal(firstArticle.sections.length, 7);
+    assert.equal(firstArticle.sections[5].list.length, 3);
+    for (const image of [firstArticle.cover, firstArticle.sections[1].image]) {
+      assert.ok(existsSync(resolve('public', `.${image.src}`)));
+    }
     const missing = renderToStaticMarkup(createElement(ArticlesPage, { pathname: '/articles/judul-artikel-pertama/' }));
     assert.ok(missing.includes('FILE NOT FOUND'), 'Draft must not have a public reader');
     const fixture = { ...draft, published: true, title: '<script>alert(1)</script>', cover: { src: '/assets/images/zuma.png', alt: 'Foto artikel', caption: 'Kredit foto' } };
