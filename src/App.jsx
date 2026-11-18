@@ -171,14 +171,14 @@ export default function App() {
         {/* Player card */}
         <aside className="player reveal">
           <div className="player__bar"><span>PLAYER 1</span><span className="player__online">● ONLINE</span></div>
-          <Asset className="player__photo" base="assets/photos/profile">
+          <Asset className="player__photo" base="assets/images/fasilkom_zuma">
             <span className="player__ph">INSERT<br />PHOTO<span className="cursor">█</span></span>
           </Asset>
           <div className="player__info">
             <h3>Christian B. P.</h3>
             <p className="player__class">CLASS · INFORMATICS STUDENT</p>
             <dl className="player__attrs">
-              <div><dt>BASE</dt><dd>JAKARTA, ID</dd></div>
+              <div><dt>BASE</dt><dd>SURABAYA, ID</dd></div>
               <div><dt>GUILD</dt><dd>BEM FASILKOM</dd></div>
               <div><dt>MAIN</dt><dd>NETWORK · SECURITY</dd></div>
               <div><dt>SIDE</dt><dd>AI · GAME DEV</dd></div>
@@ -191,7 +191,7 @@ export default function App() {
         <div className="about__grid">
           <p className="reveal">
             I'm <strong>Christian Bagus Prasetya</strong>, an Informatics student at{' '}
-            <strong>UPN “Veteran” Jawa Timur</strong> with a background in Computer and Network
+            <strong>UPN “ Veteran” Jawa Timur</strong> with a background in Computer and Network
             Engineering from SMK Katolik St. Louis Surabaya. I care about understanding how
             systems are built, managed, and secured.
           </p>
@@ -234,7 +234,7 @@ export default function App() {
             </button>
             <button type="button" className="slot reveal" onClick={openPhoto} style={{'--c': '#2F7BF5'}}>
               <span className="slot__top"><span>SLOT 02</span><span>2026</span></span>
-              <Asset as="span" className="slot__img" base="assets/photos/activity-2" />
+              <Asset as="span" className="slot__img" base="assets/images/fasilkom_zuma" />
               <span className="slot__cap"><b>Fasilkom Zuma 2026</b><span>Head of Web Division · Watuagung</span></span>
             </button>
             <button type="button" className="slot reveal" onClick={openPhoto} style={{'--c': '#14A9C4'}}>
