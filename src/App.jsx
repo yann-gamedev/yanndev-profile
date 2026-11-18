@@ -345,7 +345,7 @@ export default function App() {
             </p>
             <div className="tags"><span>REACT</span><span>LARAVEL</span><span>TEAM OF 3</span></div>
             <div className="card__links">
-              <a href="https://watuagung-zuma.vercel.app/" target="_blank" rel="noopener" className="btn btn--solid">▸ LIVE DEMO</a>
+              <a href="https://desawatuagung.com" target="_blank" rel="noopener" className="btn btn--solid">▸ LIVE DEMO</a>
               <a href="https://github.com/yann-gamedev/watuagung_zuma" target="_blank" rel="noopener" className="btn">⌥ SOURCE</a>
             </div>
           </div>
